@@ -1,0 +1,4 @@
+{
+    "github.copilot.chat.generateTests.codeLens": true,
+    "chat.edits2.enabled": true
+}

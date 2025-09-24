@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <title>Upravljalnik kode (API vmesnik)</title>
+    <style>
+        body { font-family: sans-serif; background: #f8f8f8; margin: 0; padding: 0; }
+        #container { max-width: 1200px; margin: 2em auto; background: #fff; padding: 2em; border-radius: 8px; box-shadow: 0 2px 8px #0001; }
+        #datoteke { width: 300px; float: left; border-right: 1px solid #eee; min-height: 500px; }
+        #urejevalnik { margin-left: 320px; }
+        textarea { width: 100%; min-height: 300px; font-family: monospace; font-size: 1em; }
+        .datoteka, .mapa { cursor: pointer; padding: 2px 8px; border-radius: 4px; }
+        .datoteka:hover, .mapa:hover { background: #e0e0e0; }
+        .izbrano { background: #b3e5fc; }
+        .toolbar { margin-bottom: 1em; }
+        .toolbar button { margin-right: 0.5em; }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="datoteke">
+        <h3>Datoteke</h3>
+        <div id="seznam"></div>
+        <div class="toolbar">
+            <input type="text" id="nova-pot" placeholder="Nova datoteka ali mapa...">
+            <button onclick="ustvari('datoteka')">+ Datoteka</button>
+            <button onclick="ustvari('mapa')">+ Mapa</button>
+        </div>
+    </div>
+    <div id="urejevalnik">
+        <h3 id="ime-datoteke">Izberi datoteko</h3>
+        <div class="toolbar">
+            <button onclick="shrani()">Shrani</button>
+            <button onclick="dodaj()">Dodaj</button>
+            <button onclick="izbrisi()">Izbriši</button>
+        </div>
+        <textarea id="vsebina" disabled></textarea>
+        <div id="status"></div>
+    </div>
+</div>
+<script>
+let izbranaPot = null;
+
+function naloziSeznam(pot = '') {
+    fetch(`/GLOBALNO/api/koda.php?pot=${encodeURIComponent(pot)}&seznam=1`)
+        .then(r => r.json()).then(data => {
+            if (data.status === 'ok') {
+                document.getElementById('seznam').innerHTML = narisiSeznam(data.seznam, pot);
+            }
+        });
+}
+function narisiSeznam(seznam, osnova) {
+    let html = '<ul style="list-style:none;padding-left:1em;">';
+    for (let e of seznam) {
+        if (e.tip === 'mapa') {
+            html += `<li class="mapa" onclick="naloziSeznam('${osnova ? osnova + '/' : ''}${e.ime}')">📁 ${e.ime}</li>`;
+        } else {
+            html += `<li class="datoteka" onclick="odpriDatoteko('${osnova ? osnova + '/' : ''}${e.ime}', this)">📄 ${e.ime}</li>`;
+        }
+    }
+    html += '</ul>';
+    return html;
+}
+function odpriDatoteko(pot, el) {
+    izbranaPot = pot;
+    document.getElementById('ime-datoteke').innerText = pot;
+    document.querySelectorAll('.datoteka').forEach(e => e.classList.remove('izbrano'));
+    if (el) el.classList.add('izbrano');
+    fetch(`/GLOBALNO/api/koda.php?pot=${encodeURIComponent(pot)}`)
+        .then(r => r.json()).then(data => {
+            if (data.status === 'ok') {
+                document.getElementById('vsebina').value = data.vsebina;
+                document.getElementById('vsebina').disabled = false;
+            } else {
+                document.getElementById('vsebina').value = '';
+                document.getElementById('vsebina').disabled = true;
+            }
+        });
+}
+function shrani() {
+    if (!izbranaPot) return;
+    fetch(`/GLOBALNO/api/koda.php?pot=${encodeURIComponent(izbranaPot)}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ vsebina: document.getElementById('vsebina').value, nacin: 'zamenjaj' })
+    }).then(r => r.json()).then(data => prikaziStatus(data.sporocilo));
+}
+function dodaj() {
+    if (!izbranaPot) return;
+    fetch(`/GLOBALNO/api/koda.php?pot=${encodeURIComponent(izbranaPot)}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ vsebina: document.getElementById('vsebina').value, nacin: 'dodaj' })
+    }).then(r => r.json()).then(data => prikaziStatus(data.sporocilo));
+}
+function izbrisi() {
+    if (!izbranaPot) return;
+    fetch(`/GLOBALNO/api/koda.php?pot=${encodeURIComponent(izbranaPot)}`, {
+        method: 'DELETE' })
+        .then(r => r.json()).then(data => {
+            prikaziStatus(data.sporocilo);
+            naloziSeznam();
+            document.getElementById('vsebina').value = '';
+            document.getElementById('vsebina').disabled = true;
+            document.getElementById('ime-datoteke').innerText = 'Izberi datoteko';
+        });
+}
+function ustvari(tip) {
+    let pot = document.getElementById('nova-pot').value.trim();
+    if (!pot) return;
+    let nacin = tip === 'mapa' ? 'mapa' : 'ustvari';
+    fetch(`/GLOBALNO/api/koda.php?pot=${encodeURIComponent(pot)}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nacin: nacin })
+    }).then(r => r.json()).then(data => {
+        prikaziStatus(data.sporocilo);
+        naloziSeznam();
+        document.getElementById('nova-pot').value = '';
+    });
+}
+function prikaziStatus(msg) {
+    document.getElementById('status').innerText = msg;
+    setTimeout(() => { document.getElementById('status').innerText = ''; }, 3000);
+}
+window.onload = () => naloziSeznam();
+</script>
+</body>
+</html>
