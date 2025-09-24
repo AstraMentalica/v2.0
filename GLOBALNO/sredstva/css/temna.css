@@ -1,0 +1,71 @@
+/* /root/GLOBALNO/sredstva/css/teme/temna.css v2.0 */
+/* Temna tema - alternativa svetli temi */
+
+body.tema-temna {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.tema-temna .glavna-navigacija {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+    border-bottom: 1px solid #333;
+}
+
+body.tema-temna .navigacija-spodnji-del {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+body.tema-temna .element-navigacije a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+body.tema-temna .dobrodoslica,
+body.tema-temna .dodaj-element,
+body.tema-temna .seznam-elementov,
+body.tema-temna .ai-pogovor {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+body.tema-temna .element {
+    background: #2d2d2d;
+    border-left: 4px solid #1abc9c;
+}
+
+body.tema-temna .skupina-vnosa input,
+body.tema-temna .skupina-vnosa textarea,
+body.tema-temna .skupina-vnosa select {
+    background: #2d2d2d;
+    border: 1px solid #444;
+    color: #e0e0e0;
+}
+
+body.tema-temna .skupina-vnosa input:focus,
+body.tema-temna .skupina-vnosa textarea:focus,
+body.tema-temna .skupina-vnosa select:focus {
+    border-color: #1abc9c;
+    box-shadow: 0 0 0 0.2rem rgba(26, 188, 156, 0.25);
+}
+
+body.tema-temna .paginacija a {
+    background: #2d2d2d;
+    color: #1abc9c;
+    border-color: #444;
+}
+
+body.tema-temna .paginacija a:hover {
+    background: #3d3d3d;
+}
+
+body.tema-temna .paginacija .aktiven a {
+    background: #1abc9c;
+    color: #1e1e1e;
+    border-color: #1abc9c;
+}
+
+body.tema-temna .ai-odgovor {
+    background: #2d2d2d;
+    border-left-color: #1abc9c;
+}

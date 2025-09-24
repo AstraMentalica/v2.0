@@ -1,0 +1,465 @@
+/* /root/GLOBALNO/sredstva/css/globalni.css v2.0 */
+/* Globalni slogi za celoten sistem */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+/* Navigacija */
+.glavna-navigacija {
+    background-color: #2c3e50;
+    color: white;
+    padding: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navigacija-zgornji-del {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.logotip {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.gumb-mobilni-menui {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.gumb-mobilni-menui span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+.navigacija-spodnji-del {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    background-color: #34495e;
+}
+
+.seznam-navigacije {
+    display: flex;
+    list-style: none;
+}
+
+.element-navigacije {
+    position: relative;
+}
+
+.element-navigacije a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 1rem;
+    transition: background-color 0.3s;
+}
+
+.element-navigacije a:hover {
+    background-color: #1abc9c;
+}
+
+.element-navigacije.aktiven a {
+    background-color: #16a085;
+}
+
+.navigacija-uporabnik {
+    display: flex;
+    list-style: none;
+}
+
+.podmeni {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.element-navigacije:hover .podmeni {
+    display: block;
+}
+
+.podmeni li {
+    border-bottom: 1px solid #eee;
+}
+
+.podmeni li:last-child {
+    border-bottom: none;
+}
+
+.podmeni a {
+    color: #333 !important;
+    padding: 0.75rem 1rem;
+    display: block;
+}
+
+.podmeni a:hover {
+    background-color: #f8f9fa !important;
+}
+
+.podmeni hr {
+    margin: 0.5rem 0;
+    border: none;
+    border-top: 1px solid #eee;
+}
+
+/* Glavna vsebina */
+.glavna-vsebina {
+    min-height: calc(100vh - 120px);
+    padding: 2rem;
+}
+
+.dobrodoslica {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.dobrodoslica h1 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.poziv-dejanje {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.gumb-primarni {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    margin: 0.5rem;
+    transition: background-color 0.3s;
+}
+
+.gumb-primarni:hover {
+    background-color: #2980b9;
+}
+
+.gumb-sekundarni {
+    display: inline-block;
+    background-color: #95a5a6;
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    margin: 0.5rem;
+    transition: background-color 0.3s;
+}
+
+.gumb-sekundarni:hover {
+    background-color: #7f8c8d;
+}
+
+/* Moduli */
+.vsebina-modula {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.opis-modula {
+    color: #7f8c8d;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.vsebina-modula-poln {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .vsebina-modula-poln {
+        grid-template-columns: 1fr;
+    }
+}
+
+.dodaj-element, .seznam-elementov {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.dodaj-element h2, .seznam-elementov h2 {
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.skupina-vnosa {
+    margin-bottom: 1rem;
+}
+
+.skupina-vnosa label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.skupina-vnosa input,
+.skupina-vnosa textarea,
+.skupina-vnosa select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+.skupina-vnosa textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.gumb {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.gumb:hover {
+    background-color: #2980b9;
+}
+
+/* Elementi */
+.seznam-elementi {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.element {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 4px;
+    border-left: 4px solid #3498db;
+}
+
+.element h3 {
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.meta-podatki {
+    font-size: 0.875rem;
+    color: #7f8c8d;
+    margin-top: 0.5rem;
+}
+
+/* Obvestila */
+.obvestilo {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem;
+    border-radius: 4px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 300px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 10000;
+    animation: drsenje-vnos 0.3s ease-out;
+}
+
+.obvestilo-uspeh {
+    background-color: #27ae60;
+}
+
+.obvestilo-napaka {
+    background-color: #e74c3c;
+}
+
+.obvestilo-opozorilo {
+    background-color: #f39c12;
+}
+
+.obvestilo-info {
+    background-color: #3498db;
+}
+
+.gumb-zapri-obvestilo {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 1rem;
+}
+
+@keyframes drsenje-vnos {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Paginacija */
+.paginacija {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.paginacija ul {
+    display: inline-flex;
+    list-style: none;
+    gap: 0.5rem;
+}
+
+.paginacija a {
+    display: block;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #3498db;
+    transition: all 0.3s;
+}
+
+.paginacija a:hover {
+    background-color: #f8f9fa;
+}
+
+.paginacija .aktiven a {
+    background-color: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+/* Noga */
+.globalna-noga {
+    background-color: #2c3e50;
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+.vsebina-noge {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.razvojna-porocila {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: #bdc3c7;
+}
+
+/* Odzivnost */
+@media (max-width: 768px) {
+    .navigacija-spodnji-del {
+        flex-direction: column;
+        padding: 0;
+    }
+    
+    .seznam-navigacije {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .navigacija-uporabnik {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .gumb-mobilni-menui {
+        display: flex;
+    }
+    
+    .glavna-vsebina {
+        padding: 1rem;
+    }
+    
+    .obvestilo {
+        left: 20px;
+        right: 20px;
+        min-width: auto;
+    }
+}
+
+/* AI pomocnik specificni slogi */
+.ai-pogovor {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.obrazec-ai {
+    margin-bottom: 2rem;
+}
+
+.ai-odgovor {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #27ae60;
+}
+
+.odgovor-vsebina {
+    line-height: 1.6;
+}
+
+.informacije-vsebina ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.informacije-vsebina li {
+    margin-bottom: 0.5rem;
+}
+
+.ikona {
+    margin-right: 0.5rem;
+}

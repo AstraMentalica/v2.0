@@ -1,0 +1,55 @@
+/* /root/GLOBALNO/sredstva/css/teme/svetla.css v2.0 */
+/* Svetla tema - osnovna tema sistema */
+
+body.tema-svetla {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+body.tema-svetla .glavna-navigacija {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    border-bottom: 1px solid #e9ecef;
+}
+
+body.tema-svetla .navigacija-spodnji-del {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+body.tema-svetla .element-navigacije a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+body.tema-svetla .dobrodoslica,
+body.tema-svetla .dodaj-element,
+body.tema-svetla .seznam-elementov,
+body.tema-svetla .ai-pogovor {
+    background: #ffffff;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+body.tema-svetla .element {
+    background: #f8f9fa;
+    border-left: 4px solid #3498db;
+}
+
+body.tema-svetla .skupina-vnosa input,
+body.tema-svetla .skupina-vnosa textarea,
+body.tema-svetla .skupina-vnosa select {
+    background: #ffffff;
+    border: 1px solid #ced4da;
+    color: #495057;
+}
+
+body.tema-svetla .skupina-vnosa input:focus,
+body.tema-svetla .skupina-vnosa textarea:focus,
+body.tema-svetla .skupina-vnosa select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+}
+
+body.tema-svetla .ai-odgovor {
+    background: #f8f9fa;
+    border-left-color: #27ae60;
+}
